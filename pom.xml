@@ -22,8 +22,6 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
-<!--    c-->
-
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
