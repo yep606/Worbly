@@ -1,5 +1,6 @@
 package base.service;
 
+import base.domain.User;
 import base.repos.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,6 +16,10 @@ public class CustomDetailsService implements UserDetailsService
 
     @Override
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
-        return userRepo.findByUserName(userName);
+
+        User userFromDB = userRepo.findByUserName(userName);
+        System.out.println(userFromDB.getRoles());
+
+        return userFromDB;
     }
 }
