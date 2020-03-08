@@ -1,8 +1,9 @@
 'use strict';
 
 var usernamePage = document.querySelector('#username-page');
-var chatPage = document.querySelector('#chat-page');
 var usernameForm = document.querySelector('#usernameForm');
+
+var chatPage = document.querySelector('#chat-page');
 var messageForm = document.querySelector('#messageForm');
 var messageInput = document.querySelector('#message');
 var messageArea = document.querySelector('#messageArea');
@@ -17,7 +18,7 @@ var colors = [
 ];
 
 function connect(event) {
-    username = document.querySelector('#name').value.trim();
+    username = document.querySelector('#userId').innerHTML.trim();
 
     if(username) {
         usernamePage.classList.add('hidden');
@@ -40,7 +41,7 @@ function onConnected() {
     stompClient.send("/app/chat.addUser",
         {},
         JSON.stringify({sender: username, type: 'JOIN'})
-    )
+    );
 
     connectingElement.classList.add('hidden');
 }
@@ -114,5 +115,5 @@ function getAvatarColor(messageSender) {
     return colors[index];
 }
 
-usernameForm.addEventListener('submit', connect, true)
-messageForm.addEventListener('submit', sendMessage, true)
+usernameForm.addEventListener('submit', connect, true);
+messageForm.addEventListener('submit', sendMessage, true);
