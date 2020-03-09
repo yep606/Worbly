@@ -1,5 +1,6 @@
 package base.service;
 
+import base.domain.Role;
 import base.domain.User;
 import base.repos.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+
+import java.util.Collections;
 
 @Service
 public class DetailsServiceImpl implements UserDetailsService
@@ -25,11 +28,17 @@ public class DetailsServiceImpl implements UserDetailsService
         return userFromDB;
     }
 
-    public String getCurrentPrincipalName(){
+    public boolean addUser(User user) {
 
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        return authentication.getName();
+        System.out.println(user.getUserName());
 
+        if(userRepo.findByUserName(user.getUserName()) != null)
+            return false;
 
+        user.setActive(true);
+        user.setRoles(Collections.singleton(Role.USER));
+        userRepo.save(user);
+
+        return true;
     }
 }
