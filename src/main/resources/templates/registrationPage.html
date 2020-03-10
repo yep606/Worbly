@@ -14,20 +14,22 @@
 
 </head>
 <body>
-<div th:text="${error}"></div>
-<form th:action="@{/registration}" method="post">
-    <div class="uk-margin">
-        <input class="uk-input uk-form-width-medium" name="userName" type="text" placeholder="Username">
-    </div>
-    <div class="uk-margin">
-        <input class="uk-input uk-form-width-medium" name="password" type="password" placeholder="Password">
-    </div>
-    <p uk-margin>
-        <button class="uk-button uk-button-primary uk-button-small"
-                type="submit" value="Sign In">Sign Up</button>
-        <a class="uk-button uk-button-default uk-button-small" href="/login">Sign Up</a>
-    </p>
-</form>
-
+<div class="uk-position-center">
+    <div th:text="${error}"></div>
+    <form th:action="@{/registration}" method="post">
+        <div class="uk-margin">
+            <input class="uk-input uk-form-width-medium" name="userName" type="text" placeholder="Username">
+        </div>
+        <div class="uk-margin">
+            <input class="uk-input uk-form-width-medium" name="password" type="password" placeholder="Password">
+        </div>
+        <p uk-margin>
+            <button class="uk-button uk-button-primary uk-button-small"
+                    type="submit" value="Sign In">Sign Up
+            </button>
+            <a class="uk-button uk-button-default uk-button-small" href="/login">Back</a>
+        </p>
+    </form>
+</div>
 </body>
 </html>
