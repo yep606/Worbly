@@ -1,16 +1,32 @@
 'use strict';
 
-var usernamePage = document.querySelector('#username-page');
-var usernameForm = document.querySelector('#usernameForm');
+// var usernamePage = document.querySelector('#username-page');
+// var usernameForm = document.querySelector('#usernameForm');
+//
+// var chatPage = document.querySelector('#chat-page');
+// var messageForm = document.querySelector('#messageForm');
+// var messageInput = document.querySelector('#message');
+// var messageArea = document.querySelector('#messageArea');
+// var connectingElement = document.querySelector('.connecting');
 
+//////
+var nameInput = $("#name");
+var roomInput = $("#room-id");
+
+var usernamePage = document.querySelector('#username-page');
 var chatPage = document.querySelector('#chat-page');
+var usernameForm = document.querySelector('#usernameForm');
 var messageForm = document.querySelector('#messageForm');
 var messageInput = document.querySelector('#message');
 var messageArea = document.querySelector('#messageArea');
 var connectingElement = document.querySelector('.connecting');
+var roomIdDisplay = document.querySelector('#room-id-display');
 
 var stompClient = null;
+var currentSubscription;
 var username = null;
+var roomId = null;
+var topic = null;
 
 var colors = [
     '#2196F3', '#32c787', '#00BCD4', '#ff5652',
@@ -18,7 +34,9 @@ var colors = [
 ];
 
 function connect(event) {
-    username = document.querySelector('#userId').innerHTML.trim();
+    username = nameInput.html().trim();
+
+    Cookies.set("name", username);
 
     if(username) {
         usernamePage.classList.add('hidden');
@@ -32,17 +50,28 @@ function connect(event) {
     event.preventDefault();
 }
 
+function enterRoom(newRoomId) {
+    roomId = newRoomId;
+    Cookies.set('roomId', roomId);
 
-function onConnected() {
-    // Subscribe to the Public Topic
-    stompClient.subscribe('/topic/public', onMessageReceived);
+    roomIdDisplay.textContent = roomId;
+    topic = `/app/chat/${newRoomId}`;
 
-    // Tell your username to the server
-    stompClient.send("/app/chat.addUser",
+    if (currentSubscription) {
+        currentSubscription.unsubscribe();
+    }
+    currentSubscription = stompClient.subscribe(`/topic/${roomId}`, onMessageReceived);
+
+    stompClient.send(`${topic}/addUser`,
         {},
         JSON.stringify({sender: username, type: 'JOIN'})
     );
+}
 
+
+function onConnected() {
+    // Subscribe to the Public Topic
+    enterRoom(roomInput.val());
     connectingElement.classList.add('hidden');
 }
 
@@ -61,7 +90,7 @@ function sendMessage(event) {
             content: messageInput.value,
             type: 'CHAT'
         };
-        stompClient.send("/app/chat.sendMessage", {}, JSON.stringify(chatMessage));
+        stompClient.send(`${topic}/sendMessage`, {}, JSON.stringify(chatMessage));
         messageInput.value = '';
     }
     event.preventDefault();
@@ -115,5 +144,19 @@ function getAvatarColor(messageSender) {
     return colors[index];
 }
 
-usernameForm.addEventListener('submit', connect, true);
-messageForm.addEventListener('submit', sendMessage, true);
+$(document).ready(function() {
+    console.log("ready");
+    var savedName = Cookies.get('name');
+    if (savedName) {
+        nameInput.val(savedName);
+    }
+
+    var savedRoom = Cookies.get('roomId');
+    if (savedRoom) {
+        roomInput.val(savedRoom);
+    }
+
+    usernamePage.classList.remove('hidden');
+    usernameForm.addEventListener('submit', connect, true);
+    messageForm.addEventListener('submit', sendMessage, true);
+});

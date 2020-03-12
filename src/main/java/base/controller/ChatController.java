@@ -25,7 +25,7 @@ public class ChatController {
 
     @MessageMapping("/chat/{roomId}/sendMessage")
     public void sendMessage(@DestinationVariable String roomId, @Payload ChatMessage chatMessage) {
-        messagingTemplate.convertAndSend(format("/channel/%s", roomId), chatMessage);
+        messagingTemplate.convertAndSend(format("/topic/%s", roomId), chatMessage);
     }
 
     @MessageMapping("/chat/{roomId}/addUser")
@@ -36,10 +36,10 @@ public class ChatController {
             ChatMessage leaveMessage = new ChatMessage();
             leaveMessage.setType(ChatMessage.MessageType.LEAVE);
             leaveMessage.setSender(chatMessage.getSender());
-            messagingTemplate.convertAndSend(format("/channel/%s", currentRoomId), leaveMessage);
+            messagingTemplate.convertAndSend(format("/topic/%s", currentRoomId), leaveMessage);
         }
         headerAccessor.getSessionAttributes().put("username", chatMessage.getSender());
-        messagingTemplate.convertAndSend(format("/channel/%s", roomId), chatMessage);
+        messagingTemplate.convertAndSend(format("/topic/%s", roomId), chatMessage);
     }
 
 }
