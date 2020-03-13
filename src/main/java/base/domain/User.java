@@ -59,6 +59,7 @@ public class User implements UserDetails {
     public Long getId() {
         return id;
     }
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -66,6 +67,7 @@ public class User implements UserDetails {
     public String getUserName() {
         return userName;
     }
+
     public void setUserName(String userName) {
         this.userName = userName;
     }
@@ -73,6 +75,7 @@ public class User implements UserDetails {
     public void setPassword(String password) {
         this.password = password;
     }
+
     public String getPassword() {
         return password;
     }
@@ -80,6 +83,7 @@ public class User implements UserDetails {
     public void setActive(boolean active) {
         this.active = active;
     }
+
     public boolean isActive() {
         return active;
     }
@@ -87,6 +91,7 @@ public class User implements UserDetails {
     public Set<Role> getRoles() {
         return roles;
     }
+
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }

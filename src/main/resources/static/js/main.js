@@ -1,15 +1,5 @@
 'use strict';
 
-// var usernamePage = document.querySelector('#username-page');
-// var usernameForm = document.querySelector('#usernameForm');
-//
-// var chatPage = document.querySelector('#chat-page');
-// var messageForm = document.querySelector('#messageForm');
-// var messageInput = document.querySelector('#message');
-// var messageArea = document.querySelector('#messageArea');
-// var connectingElement = document.querySelector('.connecting');
-
-//////
 var nameInput = $("#name");
 var roomInput = $("#room-id");
 
@@ -38,7 +28,7 @@ function connect(event) {
 
     Cookies.set("name", username);
 
-    if(username) {
+    if (username) {
         usernamePage.classList.add('hidden');
         chatPage.classList.remove('hidden');
 
@@ -84,7 +74,7 @@ function onError(error) {
 
 function sendMessage(event) {
     var messageContent = messageInput.value.trim();
-    if(messageContent && stompClient) {
+    if (messageContent && stompClient) {
         var chatMessage = {
             sender: username,
             content: messageInput.value,
@@ -102,7 +92,7 @@ function onMessageReceived(payload) {
 
     var messageElement = document.createElement('li');
 
-    if(message.type === 'JOIN') {
+    if (message.type === 'JOIN') {
         messageElement.classList.add('event-message');
         message.content = message.sender + ' joined!';
     } else if (message.type === 'LEAVE') {
@@ -144,7 +134,7 @@ function getAvatarColor(messageSender) {
     return colors[index];
 }
 
-$(document).ready(function() {
+$(document).ready(function () {
     console.log("ready");
     var savedName = Cookies.get('name');
     if (savedName) {

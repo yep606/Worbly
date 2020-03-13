@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Hello</title>
+<head th:replace="layouts/navbar :: head(hello)">
+
 </head>
 <body>
+<div th:replace="layouts/navbar :: navbar" />
 <div>Stay tuned</div>
 <a href="/chat">Click here to start chatting</a>
 </body>

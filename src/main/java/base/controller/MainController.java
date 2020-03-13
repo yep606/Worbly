@@ -24,6 +24,7 @@ public class MainController {
 
     @GetMapping("/chat")
     public String chatPage(Model model, Principal principal){
+
         model.addAttribute("name", principal.getName());
 
         return "index";

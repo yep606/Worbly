@@ -14,8 +14,7 @@ import org.springframework.stereotype.Service;
 import java.util.Collections;
 
 @Service
-public class DetailsServiceImpl implements UserDetailsService
-{
+public class DetailsServiceImpl implements UserDetailsService {
     @Autowired
     private UserRepo userRepo;
 
@@ -32,7 +31,7 @@ public class DetailsServiceImpl implements UserDetailsService
 
         System.out.println(user.getUserName());
 
-        if(userRepo.findByUserName(user.getUserName()) != null)
+        if (userRepo.findByUserName(user.getUserName()) != null)
             return false;
 
         user.setActive(true);
