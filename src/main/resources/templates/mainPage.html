@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<head th:replace="layouts/navbar :: head('Greeting')">
 </head>
+
 <body>
-<div th:replace="layouts/navbar :: navbar" />
+<div th:replace="layouts/navbar :: navbar">
+</div>
 <h2>Hey! <a href="/greeting">Log in</a> before started chatting.</h2>
 <img src="/static/images/worbly.png" alt="No picture">
 </body>
