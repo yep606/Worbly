@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<head th:replace="layouts/navbar :: head('Profile')">
+</head>
+<body>
+<div th:replace="layouts/navbar :: navbar" />
+
+<div th:text="${result}"></div>
+<h3 th:text="${username}"></h3>
+
+<form th:action="@{/user/profile}" method="post">
+    <div class="uk-margin">
+        <div class="uk-inline">
+            <label class="uk-form-label" for="password">Change password</label>
+            <span class="uk-form-icon" uk-icon="icon: pencil"></span>
+            <input name="password" id="password" class="uk-input" type="password">
+        </div>
+        <button class="uk-button uk-button-primary uk-button-small"
+                type="submit" value="Update">Update
+        </button>
+    </div>
+</form>
+
+</body>
+</html>

@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.Collections;
 
@@ -39,5 +40,18 @@ public class DetailsServiceImpl implements UserDetailsService {
         userRepo.save(user);
 
         return true;
+    }
+
+    //fix!!!
+    public boolean updateProfile(User user, String newPassword){
+
+        if(!StringUtils.isEmpty(newPassword)) {
+            user.setPassword(newPassword);
+            userRepo.save(user);
+            System.out.println("true");
+            return true;
+        }
+        else
+            return false;
     }
 }
