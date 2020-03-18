@@ -2,3 +2,4 @@ target
 *.iml
 *.idea
 application.properties
+uploads

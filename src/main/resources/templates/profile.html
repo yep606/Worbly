@@ -10,6 +10,11 @@
 <div th:text="${result}"></div>
 <h3 th:text="${username}"></h3>
 
+<div th:if="${filename}">
+    <img th:src="@{/img/{filename}(filename=${filename})}"/>
+</div>
+
+
 <form th:action="@{/user/profile}" method="post">
     <div class="uk-margin">
         <div class="uk-inline">
@@ -22,6 +27,16 @@
         </button>
     </div>
 </form>
+
+<form th:action="@{/user/image}" method="post" enctype="multipart/form-data">
+
+    <input type="file" name="file" />
+    <button class="uk-button uk-button-primary uk-button-small"
+            type="submit" value="Update">Update
+    </button>
+
+</form>
+
 
 </body>
 </html>
