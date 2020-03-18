@@ -23,14 +23,14 @@ public class DetailsServiceImpl implements UserDetailsService {
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
 
         User userFromDB = userRepo.findByUserName(userName);
-        System.out.println(userFromDB.getRoles());
+
+        if(userFromDB == null)
+            throw new UsernameNotFoundException("User not found!");
 
         return userFromDB;
     }
 
     public boolean addUser(User user) {
-
-        System.out.println(user.getUserName());
 
         if (userRepo.findByUserName(user.getUserName()) != null)
             return false;
@@ -43,15 +43,13 @@ public class DetailsServiceImpl implements UserDetailsService {
     }
 
     //fix!!!
-    public boolean updateProfile(User user, String newPassword){
+    public boolean updateProfile(User user, String newPassword) {
 
-        if(!StringUtils.isEmpty(newPassword)) {
+        if (!StringUtils.isEmpty(newPassword)) {
             user.setPassword(newPassword);
             userRepo.save(user);
-            System.out.println("true");
             return true;
-        }
-        else
+        } else
             return false;
     }
 }

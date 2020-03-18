@@ -40,6 +40,12 @@ function connect(event) {
     event.preventDefault();
 }
 
+function onConnected() {
+    // Subscribe to the Public Topic
+    enterRoom(roomInput.val());
+    connectingElement.classList.add('hidden');
+}
+
 function enterRoom(newRoomId) {
     roomId = newRoomId;
     Cookies.set('roomId', roomId);
@@ -57,14 +63,6 @@ function enterRoom(newRoomId) {
         JSON.stringify({sender: username, type: 'JOIN'})
     );
 }
-
-
-function onConnected() {
-    // Subscribe to the Public Topic
-    enterRoom(roomInput.val());
-    connectingElement.classList.add('hidden');
-}
-
 
 function onError(error) {
     connectingElement.textContent = 'Could not connect to WebSocket server. Please refresh this page to try again!';
