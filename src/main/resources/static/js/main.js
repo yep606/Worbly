@@ -72,6 +72,7 @@ function sendMessage(event) {
         var chatMessage = {
             sender: username,
             content: messageInput.value,
+            image: imageName.html(),
             type: 'CHAT'
         };
         stompClient.send(`${topic}/sendMessage`, {}, JSON.stringify(chatMessage));
@@ -97,8 +98,9 @@ function onMessageReceived(payload) {
 
         var avatarElement = document.createElement('div');
         avatarElement.classList.add("sender_photo");
-        avatarElement.style['background-image'] = 'url("/static/images/' +  imageName.html() + ')';
-            // 'url("/static/images/worbly64.png")';
+        avatarElement.style['background-image'] = 'url("/img/' +  message.image;
+
+        //     // 'url("/static/images/worbly64.png")';
 
         messageElement.appendChild(avatarElement);
 
