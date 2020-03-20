@@ -250,6 +250,16 @@ button.accent {
     width: 100%;
 }
 
+.sender_photo {
+    /*background-image: url('uploads/6fe77483-a026-4901-b17f-717e734cf92a.wormik.png');*/
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    background-size: cover;
+    display: inline-block;
+
+}
+
 
 @media screen and (max-width: 730px) {
 
