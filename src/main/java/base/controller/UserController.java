@@ -14,9 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
 import java.io.IOException;
-import java.util.UUID;
 
 @Controller
 @RequestMapping("/user")
@@ -57,19 +55,10 @@ public class UserController {
 
         if (file != null) {
 
-            String uuidFile = UUID.randomUUID().toString();
-            String imageName = uuidFile + "." + file.getOriginalFilename();
-
-            file.transferTo(new File(uploadPath + "/" + imageName));
-
-            user.setImageName(imageName);
-            userRepo.save(user);
-
+            String imageName = userService.updateImage(user, file);
             model.addAttribute("filename", imageName);
             model.addAttribute("username", user.getUsername());
-            System.out.println(imageName);
         }
-
 
 
         return "profile";

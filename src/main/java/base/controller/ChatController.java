@@ -17,8 +17,6 @@ import static java.lang.String.format;
 @Controller
 public class ChatController {
 
-    private static final Logger logger = LoggerFactory.getLogger(WebSocketEventListener.class);
-
     @Autowired
     private SimpMessageSendingOperations messagingTemplate;
 
@@ -32,6 +30,7 @@ public class ChatController {
     @MessageMapping("/chat/{roomId}/addUser")
     public void addUser(@DestinationVariable String roomId, @Payload ChatMessage chatMessage,
                         SimpMessageHeaderAccessor headerAccessor) {
+
         String currentRoomId = (String) headerAccessor.getSessionAttributes().put("room_id", roomId);
         if (currentRoomId != null) {
             ChatMessage leaveMessage = new ChatMessage();

@@ -98,9 +98,7 @@ function onMessageReceived(payload) {
 
         var avatarElement = document.createElement('div');
         avatarElement.classList.add("sender_photo");
-        avatarElement.style['background-image'] = 'url("/img/' +  message.image;
-
-        //     // 'url("/static/images/worbly64.png")';
+        avatarElement.style['background-image'] = 'url("/img/' + message.image;
 
         messageElement.appendChild(avatarElement);
 
