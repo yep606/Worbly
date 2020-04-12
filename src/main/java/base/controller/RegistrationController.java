@@ -23,7 +23,7 @@ public class RegistrationController {
 
     @PostMapping("/registration")
     public String addNewUser(User user, Model model){
-
+        System.out.println("REGISTER");
         if(!userService.addUser(user)){
 
             model.addAttribute("error", "This username already exists, try another one");

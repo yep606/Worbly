@@ -13,6 +13,8 @@ var messageArea = document.querySelector('#messageArea');
 var connectingElement = document.querySelector('.connecting');
 var roomIdDisplay = document.querySelector('#room-id-display');
 
+let arr = [];
+
 var stompClient = null;
 var currentSubscription;
 var username = null;
@@ -37,7 +39,6 @@ function connect(event) {
 }
 
 function onConnected() {
-    // Subscribe to the Public Topic
     enterRoom(roomInput.val());
     connectingElement.classList.add('hidden');
 }

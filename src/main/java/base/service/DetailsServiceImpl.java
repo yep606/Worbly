@@ -24,8 +24,6 @@ public class DetailsServiceImpl implements UserDetailsService {
     private UserRepo userRepo;
     @Value("${upload.path}")
     private String uploadPath;
-    @Value("${upload.path2}")
-    private String standartPath;
 
     @Override
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
@@ -43,7 +41,6 @@ public class DetailsServiceImpl implements UserDetailsService {
         if (userRepo.findByUserName(user.getUserName()) != null)
             return false;
 
-        user.setActive(true);
         user.setRoles(Collections.singleton(Role.USER));
         user.setActive(true);
         user.setImageName("classic.jpg");

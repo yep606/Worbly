@@ -1,9 +1,6 @@
 package base.controller;
 
 import base.domain.ChatMessage;
-import base.listener.WebSocketEventListener;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
@@ -16,14 +13,11 @@ import static java.lang.String.format;
 
 @Controller
 public class ChatController {
-
     @Autowired
     private SimpMessageSendingOperations messagingTemplate;
 
-
     @MessageMapping("/chat/{roomId}/sendMessage")
     public void sendMessage(@DestinationVariable String roomId, @Payload ChatMessage chatMessage) {
-        System.out.println(chatMessage);
         messagingTemplate.convertAndSend(format("/topic/%s", roomId), chatMessage);
     }
 
