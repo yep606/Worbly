@@ -11,8 +11,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class RegistrationController {
 
+    private final DetailsServiceImpl userService;
+
     @Autowired
-    DetailsServiceImpl userService;
+    public RegistrationController(DetailsServiceImpl userService) {
+        this.userService = userService;
+    }
 
     @GetMapping("/registration")
     public String regPage(){

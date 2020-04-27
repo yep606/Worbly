@@ -18,6 +18,7 @@ public class User implements UserDetails {
     private String password;
     private boolean active;
     private String imageName;
+    private String currentRoom;
 
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
     @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
@@ -105,4 +106,11 @@ public class User implements UserDetails {
         this.imageName = imageName;
     }
 
+    public String getCurrentRoom() {
+        return currentRoom;
+    }
+
+    public void setCurrentRoom(String currentRoom) {
+        this.currentRoom = currentRoom;
+    }
 }

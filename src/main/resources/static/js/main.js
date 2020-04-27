@@ -13,7 +13,6 @@ var messageArea = document.querySelector('#messageArea');
 var connectingElement = document.querySelector('.connecting');
 var roomIdDisplay = document.querySelector('#room-id-display');
 
-let arr = [];
 
 var stompClient = null;
 var currentSubscription;
