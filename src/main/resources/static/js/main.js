@@ -1,5 +1,7 @@
 'use strict';
 
+import request from 'request';
+
 var nameInput = $("#name");
 var roomInput = $("#room-id");
 var imageName = $("#image_name");

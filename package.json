@@ -1,0 +1,23 @@
+{
+  "name": "worbly",
+  "version": "1.0.0",
+  "description": "![should be small worm](src/main/resources/static/images/worbly128.png)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yep606/Worbly.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yep606/Worbly/issues"
+  },
+  "homepage": "https://github.com/yep606/Worbly#readme",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "restful.js": "^0.9.6"
+  }
+}
