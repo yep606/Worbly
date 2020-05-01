@@ -6,7 +6,7 @@ function sendMessage(){
         responseType: 'json'
     })
         .then(function (response) {
-                console.log(response.data);
+                console.log(response.data.id);
             }
         );
 }

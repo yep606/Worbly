@@ -18,14 +18,13 @@ public class RoomController {
         this.repo = repo;
     }
 
-    @GetMapping("{id}")
-    public HashMap<String, String> getOneMessage(@PathVariable("id") User user){
+    @GetMapping
+    public HashMap<String,String> availableRoom(){
 
-        HashMap<String,String> hash = new HashMap<>();
-        hash.put("id", "Hello, world!");
+        return null;
 
-        return hash;
     }
+
 
 
 }
