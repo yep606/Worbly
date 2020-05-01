@@ -2,11 +2,11 @@ function sendMessage(){
 
     axios({
         method: 'get',
-        url: '/room/1',
+        url: '/room',
         responseType: 'json'
     })
         .then(function (response) {
-                console.log(response.data.id);
+                console.log(response.data);
             }
         );
 }

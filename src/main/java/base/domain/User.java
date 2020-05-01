@@ -21,7 +21,7 @@ public class User implements UserDetails {
     private String currentRoom;
 
     @ManyToOne
-    @JoinColumn(name = "room_id", nullable = false)
+    @JoinColumn(name = "room_id")
     private Room room;
 
 

@@ -1,6 +1,7 @@
 package base.controller;
 
-import base.domain.User;
+import base.domain.Room;
+import base.repos.RoomRepo;
 import base.service.DetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -11,18 +12,20 @@ import java.util.HashMap;
 @RequestMapping("room")
 public class RoomController {
 
-    private final DetailsServiceImpl repo;
+    private final DetailsServiceImpl service;
+    private final RoomRepo roomRepo;
 
     @Autowired
-    public RoomController(DetailsServiceImpl repo) {
-        this.repo = repo;
+    public RoomController(DetailsServiceImpl repo, RoomRepo roomRepo) {
+        this.service = repo;
+        this.roomRepo = roomRepo;
     }
 
     @GetMapping
-    public HashMap<String,String> availableRoom(){
+    public Room availableRoom(){
 
-        return null;
 
+        return;
     }
 
 
