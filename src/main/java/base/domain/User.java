@@ -18,7 +18,6 @@ public class User implements UserDetails {
     private String password;
     private boolean active;
     private String imageName;
-    private String currentRoom;
 
     @ManyToOne
     @JoinColumn(name = "room_id")
@@ -111,11 +110,11 @@ public class User implements UserDetails {
         this.imageName = imageName;
     }
 
-    public String getCurrentRoom() {
-        return currentRoom;
+    public Room getRoom() {
+        return room;
     }
 
-    public void setCurrentRoom(String currentRoom) {
-        this.currentRoom = currentRoom;
+    public void setRoom(Room room) {
+        this.room = room;
     }
 }

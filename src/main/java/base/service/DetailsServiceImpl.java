@@ -43,7 +43,6 @@ public class DetailsServiceImpl implements UserDetailsService {
 
         user.setRoles(Collections.singleton(Role.USER));
         user.setActive(true);
-        user.setCurrentRoom("");
         user.setImageName("classic.jpg");
         userRepo.save(user);
 

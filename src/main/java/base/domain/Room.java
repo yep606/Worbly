@@ -40,4 +40,12 @@ public class Room {
     public void setSubject(String subject) {
         this.subject = subject;
     }
+
+    public Set<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(Set<User> users) {
+        this.users = users;
+    }
 }

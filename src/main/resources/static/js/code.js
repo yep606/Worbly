@@ -2,7 +2,7 @@ function sendMessage(){
 
     axios({
         method: 'get',
-        url: '/room',
+        url: '/room/Math',
         responseType: 'json'
     })
         .then(function (response) {
