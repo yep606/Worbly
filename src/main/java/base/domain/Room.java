@@ -1,21 +1,20 @@
 package base.domain;
 
+import org.hibernate.annotations.Check;
+
 import javax.persistence.*;
-import java.util.Set;
 
 @Entity
 @Table(name = "room")
+@Check(constraints = "people < 3")
 public class Room {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private boolean available;
+    private int people;
     private String subject;
-
-    @OneToMany(mappedBy = "room")
-    private Set<User> users;
-
 
     public Long getId() {
         return id;
@@ -41,11 +40,13 @@ public class Room {
         this.subject = subject;
     }
 
-    public Set<User> getUsers() {
-        return users;
+    public int getPeople() {
+        return people;
     }
 
-    public void setUsers(Set<User> users) {
-        this.users = users;
+    public void setPeople(int users_num) {
+        this.people = users_num;
     }
+
+
 }

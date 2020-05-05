@@ -4,13 +4,12 @@ import base.domain.Room;
 import base.domain.User;
 import base.repos.RoomRepo;
 import base.repos.UserRepo;
-import base.service.DetailsServiceImpl;
+import base.util.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
-import java.util.List;
 
 @RestController
 @RequestMapping("room")
@@ -25,17 +24,26 @@ public class RoomController {
         this.userRepo = userRepo;
     }
 
+    @Bean
+    public RoomService roomService(){
+
+        return new RoomService(roomRepo);
+
+    }
+
     @GetMapping("{subject}")
     public Room availableRoom(@PathVariable String subject, @AuthenticationPrincipal User user){
 
-        List<Room> test = roomRepo.findByAvailableAndSubject(true, subject);
-        System.out.println(test);
+        RoomService.findFreeRoom(subject);
+
         if(test.isEmpty()){
             Room newRoom = new Room();
             newRoom.setSubject(subject);
             newRoom.setAvailable(true);
-
-            return roomRepo.save(newRoom);
+            roomRepo.save(newRoom);
+            user.setRoom(newRoom);
+            userRepo.save(user);
+            return newRoom;
         }
         return null;
     }
