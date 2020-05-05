@@ -15,37 +15,25 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("room")
 public class RoomController {
 
-    private final RoomRepo roomRepo;
     private final UserRepo userRepo;
+    private final RoomService roomService;
 
     @Autowired
-    public RoomController(RoomRepo roomRepo, UserRepo userRepo) {
-        this.roomRepo = roomRepo;
+    public RoomController(UserRepo userRepo, RoomService roomService) {
         this.userRepo = userRepo;
-    }
-
-    @Bean
-    public RoomService roomService(){
-
-        return new RoomService(roomRepo);
-
+        this.roomService = roomService;
     }
 
     @GetMapping("{subject}")
     public Room availableRoom(@PathVariable String subject, @AuthenticationPrincipal User user){
 
-        RoomService.findFreeRoom(subject);
+        System.out.println(subject);
+        Room room = roomService.findFreeRoom(subject);
 
-        if(test.isEmpty()){
-            Room newRoom = new Room();
-            newRoom.setSubject(subject);
-            newRoom.setAvailable(true);
-            roomRepo.save(newRoom);
-            user.setRoom(newRoom);
-            userRepo.save(user);
-            return newRoom;
-        }
-        return null;
+        user.setRoom(room);
+        userRepo.save(user);
+
+        return room;
     }
 
 

@@ -2,30 +2,39 @@ package base.util;
 
 import base.domain.Room;
 import base.repos.RoomRepo;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class RoomService {
 
-    @Autowired
-    private static RoomRepo roomRepo;
+    private final RoomRepo roomRepo;
+
+    public RoomService(RoomRepo roomRepo) {
+        this.roomRepo = roomRepo;
+    }
 
 
+    public Room findFreeRoom(String subject) {
 
-
-    public static Room findFreeRoom(String subject) {
-
+        System.out.println(roomRepo);
+        Room newRoom;
         List<Room> test = roomRepo.findByAvailableAndSubject(true, subject);
 
         if (test.isEmpty()) {
-            Room newRoom = new Room();
+            newRoom = new Room();
             newRoom.setSubject(subject);
             newRoom.setAvailable(true);
             newRoom.setPeople(1);
-            roomRepo.save(newRoom);
+            return roomRepo.save(newRoom);
         }
 
-        return null;
+        newRoom = test.get(0);
+        newRoom.setPeople(2);
+        newRoom.setAvailable(false);
+
+
+        return roomRepo.save(newRoom);
     }
 }
