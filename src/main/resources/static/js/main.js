@@ -1,4 +1,3 @@
-import axios from 'axios'
 
 var nameInput = $("#name");
 var roomInput = $("#room-id");
@@ -39,16 +38,17 @@ function connect(event) {
 }
 
 function onConnected() {
-    axios.get(`/room/${roomInput.val}`)
-        .then(result => {
-            result.json().then(data => {
-                console.log(data.subject);
-
-                enterRoom(data.id);
-                connectingElement.classList.add('hidden');
-
-            });
-        });
+    axios({
+        method: 'get',
+        url: '/room/Programming',
+        responseType: 'json'
+    })
+        .then(response => {
+            console.log(response.data.subject);
+            enterRoom(response.data.id);
+            connectingElement.classList.add('hidden');
+            }
+        );
 }
 
 function enterRoom(newRoomId) {
