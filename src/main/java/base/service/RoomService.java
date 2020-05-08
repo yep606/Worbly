@@ -1,4 +1,4 @@
-package base.util;
+package base.service;
 
 import base.domain.Room;
 import base.repos.RoomRepo;
@@ -14,7 +14,6 @@ public class RoomService {
     public RoomService(RoomRepo roomRepo) {
         this.roomRepo = roomRepo;
     }
-
 
     public Room findFreeRoom(String subject) {
 

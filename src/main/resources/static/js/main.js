@@ -1,4 +1,4 @@
-'use strict';
+import axios from 'axios'
 
 var nameInput = $("#name");
 var roomInput = $("#room-id");
@@ -19,6 +19,7 @@ var currentSubscription;
 var username = null;
 var roomId = null;
 var topic = null;
+const subjects = ["Programming", "Art"];
 
 function connect(event) {
     username = nameInput.html().trim();
@@ -38,8 +39,16 @@ function connect(event) {
 }
 
 function onConnected() {
-    enterRoom(roomInput.val());
-    connectingElement.classList.add('hidden');
+    axios.get(`/room/${roomInput.val}`)
+        .then(result => {
+            result.json().then(data => {
+                console.log(data.subject);
+
+                enterRoom(data.id);
+                connectingElement.classList.add('hidden');
+
+            });
+        });
 }
 
 function enterRoom(newRoomId) {

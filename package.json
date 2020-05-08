@@ -17,6 +17,6 @@
   },
   "homepage": "https://github.com/yep606/Worbly#readme",
   "dependencies": {
-    "restful.js": "^0.9.6"
+    "axios": "^0.19.2"
   }
 }

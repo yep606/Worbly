@@ -2,11 +2,9 @@ package base.controller;
 
 import base.domain.Room;
 import base.domain.User;
-import base.repos.RoomRepo;
 import base.repos.UserRepo;
-import base.util.RoomService;
+import base.service.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
