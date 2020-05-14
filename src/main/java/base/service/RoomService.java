@@ -16,8 +16,6 @@ public class RoomService {
     }
 
     public Room findFreeRoom(String subject) {
-
-        System.out.println(roomRepo);
         Room newRoom;
         List<Room> test = roomRepo.findByAvailableAndSubject(true, subject);
 
