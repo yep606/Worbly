@@ -1,4 +1,17 @@
 import {start} from './websocket/stomp';
+import VueResource from 'vue-resource'
+
+Vue.use(VueResource);
+
+var resource = Vue.resource('room{/id}');
+
+resource.get().then(response => {
+
+    response.json().then(data =>{
+        console.log(data.subject)
+    })
+
+})
 
 Vue.component('message-form', {
 

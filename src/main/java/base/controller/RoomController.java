@@ -2,6 +2,7 @@ package base.controller;
 
 import base.domain.Room;
 import base.domain.User;
+import base.repos.RoomRepo;
 import base.repos.UserRepo;
 import base.service.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,13 @@ public class RoomController {
         user.setRoom(room);
         userRepo.save(user);
 
+        return room;
+    }
+
+    @GetMapping()
+    public Room allRooms(){
+        Room room = new Room();
+        room.setSubject("Test");
         return room;
     }
 
