@@ -4,7 +4,8 @@
   "description": "![should be small worm](src/main/resources/static/images/worbly128.png)",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
   },
   "repository": {
     "type": "git",
@@ -17,6 +18,9 @@
   },
   "homepage": "https://github.com/yep606/Worbly#readme",
   "dependencies": {
-    "axios": "^0.19.2"
+    "@stomp/stompjs": "^5.4.4",
+    "sockjs": "^0.3.20",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11"
   }
 }

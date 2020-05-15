@@ -1,3 +1,5 @@
+import {start} from './websocket/stomp';
+
 Vue.component('message-form', {
 
     data: function() {
@@ -8,10 +10,10 @@ Vue.component('message-form', {
     },
 
     props: ['messages', 'message'],
-
     template: '<div>' +
         '<input placeholder="Write a messsge" v-model="text" />'+
-        '<button @click="save">Send</button>'
+        '<button @click="save">Send</button>' +
+        '<button @click="conn">Connection</button>'
         + '</div>',
 
     watch: {
@@ -34,6 +36,10 @@ Vue.component('message-form', {
                 this.text ='';
             }
 
+        },
+
+        conn: function(){
+            start();
         }
 
     }
