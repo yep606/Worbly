@@ -1,5 +1,7 @@
 const path = require('path');
 
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
+
 const ROOT = path.resolve(__dirname, 'src/main/resources/static');
 const DEST = path.resolve(__dirname, 'src/main/resources/static');
 
@@ -9,4 +11,28 @@ module.exports = {
         filename: 'app.js',
         path: path.resolve(DEST, 'dist'),
     },
+    module: {
+        rules: [
+            {
+                test: /\.js$/,
+                exclude: /(node_modules|bower_components)/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['@babel/preset-env']
+                    }
+                }
+            },
+            // ... other rules
+            {
+                test: /\.vue$/,
+                loader: 'vue-loader'
+            }
+        ]
+    },
+    plugins: [
+        // make sure to include the plugin!
+        new VueLoaderPlugin()
+    ]
+
 };

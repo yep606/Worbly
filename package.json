@@ -1,7 +1,7 @@
 {
   "name": "worbly",
   "version": "1.0.0",
-  "description": "![should be small worm](src/main/resources/static/images/worbly128.png)",
+  "description": "![should be small wormclear](src/main/resources/static/images/worbly128.png)",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -18,10 +18,18 @@
   },
   "homepage": "https://github.com/yep606/Worbly#readme",
   "dependencies": {
+    "@babel/core": "^7.9.6",
+    "@babel/preset-env": "^7.9.6",
     "@stomp/stompjs": "^5.4.4",
+    "babel-loader": "^8.1.0",
     "sockjs": "^0.3.20",
+    "vue": "^2.6.11",
     "vue-resource": "^1.5.1",
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.11"
+  },
+  "devDependencies": {
+    "vue-loader": "^15.9.2",
+    "vue-template-compiler": "^2.6.11"
   }
 }
