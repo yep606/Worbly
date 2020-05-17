@@ -5,13 +5,13 @@ Vue.use(VueResource);
 
 var resource = Vue.resource('room{/id}');
 
-resource.get().then(response => {
-
-    response.json().then(data =>{
-        console.log(data.subject)
-    })
-
-})
+// resource.get().then(response => {
+//
+//     response.json().then(data =>{
+//         console.log(data.subject)
+//     })
+//
+// })
 
 Vue.component('message-form', {
 
@@ -25,8 +25,7 @@ Vue.component('message-form', {
     props: ['messages', 'message'],
     template: '<div>' +
         '<input placeholder="Write a messsge" v-model="text" />'+
-        '<button @click="save">Send</button>' +
-        '<button @click="conn">Connection</button>'
+        '<button @click="save">Send</button>'
         + '</div>',
 
     watch: {
@@ -50,11 +49,6 @@ Vue.component('message-form', {
             }
 
         },
-
-        conn: function(){
-            start();
-        }
-
     }
 })
 
@@ -80,21 +74,30 @@ Vue.component('message-list', {
 
         return {
             message: null,
+            isConnected: false,
         }
 
     },
     props: ['messages'],
     template: '<div>' +
+        '<button v-if="!isConnected" @click="conn">Connection</button>' +
+        '<div v-if="isConnected">' +
         '<message-row v-for="message in messages" :key="message.id"' +
         ':messages="messages" :message="message" :editMessage="editMessage">' +
         '</message-row>' +
-        '<message-form :messages="messages" :message="message" />'
+        '<message-form :messages="messages" :message="message" />' +
+        '</div>'
         + '</div>',
 
     methods: {
 
-        editMessage: function(message){
+        editMessage: function (message) {
             this.message = message;
+        },
+
+        conn: function(){
+            start();
+            this.isConnected = true;
         }
 
     }
