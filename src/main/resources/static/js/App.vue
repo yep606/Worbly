@@ -6,7 +6,7 @@
 
 <script>
 
-    import MessageList from "../components/MessageList";
+    import MessageList from "./components/MessageList.vue";
 
     export default {
         components: {

@@ -23,7 +23,6 @@ module.exports = {
                     }
                 }
             },
-            // ... other rules
             {
                 test: /\.vue$/,
                 loader: 'vue-loader'

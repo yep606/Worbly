@@ -1,7 +1,7 @@
 import {start} from './websocket/stomp';
 import VueResource from 'vue-resource'
 
-import App from "./pages/App";
+import App from "./App.vue";
 
 // Vue.use(VueResource);
 //

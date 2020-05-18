@@ -2,9 +2,8 @@
     <div>
         <button v-if="!isConnected" @click="conn">Connection</button>
         <div v-if="isConnected">
-            <MessageRow v-for="message in messages" :key="message.id">
-                :messages="messages" :message="message" :editMessage="editMessage">
-            </MessageRow>
+            <MessageRow v-for="message in messages" :key="message.id"
+                :messages="messages" :message="message" :editMessage="editMessage"/>
             <MessageForm :messages="messages" :message="message"/>
         </div>
     </div>
@@ -12,8 +11,8 @@
 
 <script>
 
-    import MessageForm from "./MessageForm";
-    import MessageRow from "./MessageRow";
+    import MessageForm from "./MessageForm.vue";
+    import MessageRow from "./MessageRow.vue";
     import {start} from "../websocket/stomp";
 
     export default {
@@ -26,10 +25,12 @@
             return {
                 message: null,
                 isConnected: false,
+                messages: [
+
+                ],
             }
 
         },
-        props: ['messages'],
         methods: {
 
             editMessage: function (message) {
