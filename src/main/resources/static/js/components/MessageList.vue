@@ -12,6 +12,7 @@
 <script>
     import MessageForm from "./MessageForm.vue";
     import MessageRow from "./MessageRow.vue";
+    import '../utils/resource'
     import {start} from "../websocket/stomp";
 
     export default {

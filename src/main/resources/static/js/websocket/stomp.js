@@ -1,9 +1,7 @@
 import {Stomp} from '@stomp/stompjs'
 import SockJS from 'sockjs-client'
 import Vue from 'vue'
-import VueResource from 'vue-resource'
 
-Vue.use(VueResource)
 
 const room = Vue.resource('room{/id}');
 
