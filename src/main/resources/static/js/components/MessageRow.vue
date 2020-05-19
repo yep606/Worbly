@@ -7,16 +7,13 @@
 
 <script>
     export default {
-
         props: ['messages', 'message', 'editMessage'],
-
-
         methods: {
-
             edit: function () {
                 this.editMessage(this.message);
             }
-
         }
     }
 </script>
+
+<style></style>
