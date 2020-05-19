@@ -1,23 +1,8 @@
-import VueResource from 'vue-resource'
-
+import Vue from 'vue'
 import App from "./pages/App.vue";
-
-// Vue.use(VueResource);
-//
-// var resource = Vue.resource('room{/id}');
-//
-// // resource.get().then(response => {
-// //
-// //     response.json().then(data =>{
-// //         console.log(data.subject)
-// //     })
-// //
-// // })
-//
-
+import './utils/resource'
 
 new Vue({
     el: '#app',
-    template: '<App/>',
-    components: { App },
+    render: a => a(App)
 })

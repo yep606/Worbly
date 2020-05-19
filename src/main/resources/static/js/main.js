@@ -53,8 +53,6 @@ function onConnected() {
 
 function enterRoom(newRoomId) {
     roomId = newRoomId;
-    Cookies.set('roomId', roomId);
-
     roomIdDisplay.textContent = roomId;
     topic = `/app/chat/${newRoomId}`;
 
